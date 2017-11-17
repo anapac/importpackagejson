@@ -1,9 +1,11 @@
 const importPackageJson = require('./');
 
 process.packageJson = {};
-importPackageJson('D:\\projects\\misc\\apps\\Modules\\importPackageJson',
+importPackageJson(__dirname,
   [
     'private', 'webpage', 'name', 'version'
   ],
   process.packageJson
 );
+
+console.info(JSON.stringify(process.packageJson, null, '\t'));

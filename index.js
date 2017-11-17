@@ -14,7 +14,7 @@ module.exports = function (packageJson, props, target) {
   if (!props || !Array.isArray(props)) {
     props = [];
   }
-  console.log(`Using: props: ${props.join(', ')}`);
+  // console.log(`Using: props: ${props.join(', ')}`);
 
   // process the target object param
   if (!target || typeof target !== 'object') {
@@ -24,17 +24,17 @@ module.exports = function (packageJson, props, target) {
 
   let content;
   while (!content) {
-    console.info(`Trying ${packageJson}...`);
+    // console.info(`Trying ${packageJson}...`);
     try {
       content = fs.readFileSync(packageJson, 'utf8');
     } catch(e) {
       if (e.code === 'EISDIR') {
-        console.info(`${packageJson} is a DIR.`);
+        // console.info(`${packageJson} is a DIR.`);
         if (path.isAbsolute(packageJson)) {
-          console.info(`${packageJson} is an absolute path.`);
+          // console.info(`${packageJson} is an absolute path.`);
           packageJson = path.resolve(packageJson, 'package.json');
         } else {
-          console.info(`${packageJson} is a relative path.`);
+          // console.info(`${packageJson} is a relative path.`);
           packageJson = path.resolve(__dirname, packageJson, 'package.json');
         }
         continue;
@@ -51,7 +51,7 @@ module.exports = function (packageJson, props, target) {
     } // try/catch
   } // while
 
-  console.info(`Successfully read ${packageJson} -> ${typeof content}`);
+  // console.info(`Successfully read ${packageJson} -> ${typeof content}`);
   // shallow-copy the object data
   try {
     content = JSON.parse(content);
@@ -63,10 +63,10 @@ module.exports = function (packageJson, props, target) {
 
   for (let prop of props) {
     if (Object.keys(content).includes(prop)) {
-      console.info(`\t=> Copying ${prop}...`);
+      // console.info(`\t=> Copying ${prop}...`);
       target[prop] = content[prop];
     }
   }
 
-  console.info(JSON.stringify(target, null, '\t'));
+  // console.info(JSON.stringify(target, null, '\t'));
 };  // function
