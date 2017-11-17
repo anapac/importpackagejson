@@ -4,8 +4,8 @@
   "description": "A simple Node module that imports from the package.json object into your code",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anapac/importpackagejson.git"
